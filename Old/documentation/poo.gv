@@ -1,0 +1,55 @@
+
+digraph {
+  //compound=true
+  //newrank=true
+
+
+  group -> condit -> well -> cell
+
+  cell -> well -> condit -> group
+
+  coname, wname, gname [label = name]
+  codata, cdata, wdata [label = data]
+  coSumData, wellSumData [label = "Summary Data"]
+
+  subgraph clustergroup {
+    group -> { gname }
+  }
+  subgraph clustercondit {
+    ///rank = max;
+    //rank=source;
+    ///3;
+
+    condit -> { coname, codata, coSumData}
+    codata -> coSumData [constraint=false]
+  }
+  subgraph clusterwell {
+    //rank = min;
+    //5;
+    well -> { wname, cellcount, wdata, wellSumData, csv, czi}
+    wdata -> codata, wellSumData [constraint=false]
+  }
+  subgraph clustercell{
+    //rank = min;
+    //7;
+    cell -> { id, cdata}
+    cdata -> codata, wdata [constraint=false]
+  }
+
+
+
+  1->2->3->4->5->6->7->8  [color = white]
+  1, 2, 3, 4, 5, 6, 7, 8 [style = invis]
+
+  { rank = same; 1; group}
+
+  { rank = same; 2; condit}
+  //{ rank = same; 3; coname}
+
+  { rank = same; 4; well; }
+  //{ rank = same; 5; wname; }
+
+
+  { rank = same; 6; cell}
+  //{ rank = same; 7; id; }
+}

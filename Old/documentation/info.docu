@@ -1,0 +1,41 @@
+Data stored in structs  // not classes
+
+
+processCzi should not require condit_dict
+
+readPlotCsv should be able to make summary csv files and individual graphs without condit_dict
+
+
+
+
+
+outdated:
+aepl
++--info.docu
++--msg.docu
+|--aeplUtil
+|  +--buildcmap.m
+|  +--MakeConditDict.m
+|--processCzi
+|  +--DrawTracks.m
+|  +--ExportTrackStats.m
+|  +--getTracks.m
+|  +--Mak2eConditDict.m
+|  +--MakeMovie.m
+|  +--Run.m
+|  +--Run2.m
+|  +--segIms.m
+|  +--SegTexture_MSKCC.m
+|--readPlotCvs
+|  +--plotCondits.m
+|  +--readd.m
+|  +--readPlateMap.m
+|  +--run.m
+|  +--scatDisp.m
+|  +--scatDispAdd.m
+|  +--tempFigPdfSize.m
+|  +--untitled.m
+|  +--wellAndConditAvgs.m
+|  +--wellAndConditMeds.m
+|--Utilities
+    +--...

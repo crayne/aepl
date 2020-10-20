@@ -1,0 +1,12 @@
+
+digraph {
+  group -> condit -> well -> cell
+
+  subgraph clustercondit {
+    condit -> { name}
+    condit -> group
+  }
+  subgraph clusterwell {
+    well -> {name}
+  }
+}

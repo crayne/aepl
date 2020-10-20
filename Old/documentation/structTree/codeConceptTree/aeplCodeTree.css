@@ -1,0 +1,96 @@
+:root {
+  /* --begonia: #ff6978;
+  --snow: #fffcf9;
+  --paleTurq: #b1ede8;
+  --deepTuscRed: #6d435a;
+  --onyx: #352d39; */
+
+
+  --background: #b1ede8;    /* Pale Turquois */
+  --nodeD: #6d435a;         /* Deep Tuscan Red */
+  --nodeF: #a28796;
+  --nodeF2: #ff919C;
+  --nodeI: #ffbac1;
+
+  /* --nodeColB: #352d39;      /* Onyx */
+  --nodeCollD: #44363e;
+
+  --text: #fffcf9;          /* Snow */
+
+  --highlight: #ff6978;     /* Begonia */
+
+
+}
+
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { margin:0; padding:0; }
+table { border-collapse:collapse; border-spacing:0; }
+fieldset,img { border:0; }
+address,caption,cite,code,dfn,em,strong,th,var { font-style:normal; font-weight:normal; }
+caption,th { text-align:left; }
+h1,h2,h3,h4,h5,h6 { font-size:100%; font-weight:normal; }
+q:before,q:after { content:''; }
+abbr,acronym { border:0; }
+
+/* body { background: var(--main-bg-color); } */
+body { background: var(--background); }
+/* optional Container STYLES */
+/* .chart { height: 600px; margin: 5px; width: 900px; font-family: Verdana}  */
+/* .chart { height: 600px; margin: 5px; width: 900px; font-family: "Courier New";} */
+.chart { margin: 5px; font-family: "Courier New";}
+.Treant > .node {  }
+.Treant > .node img { width: 100%; height: 100%; }
+
+.Treant .collapse-switch { width: 100%; height: 100%; border: none; }
+/* .Treant .node.collapsed { background-color: var(--nodeCollD); } */
+.Treant .node.collapsed .collapse-switch { background: none; }
+
+
+
+
+
+.dirNode {
+  padding: 10px;
+
+  background-color: var(--nodeD);
+  color: var(--text);
+
+  border-bottom-left-radius: 100% 100%;
+  border-bottom-right-radius: 100% 100%;
+  border-top-left-radius: 100% 100%;
+  border-top-right-radius: 100% 100%;
+}
+.dirNode.collapsed {
+  background-color: var(--nodeCollD);
+}
+
+.fileNode {
+  padding: 10px;
+  border: 0px solid var(--highlight);
+  border-radius: 3px;
+  background-color: var(--nodeF);
+  color: var(--text);
+}
+.fileNodeC {
+  padding: 10px;
+  border: 0px solid var(--highlight);
+  border-radius: 3px;
+  background-color: var(--nodeF2);
+  color: var(--text);
+}
+.fileNodeC.collapsed {
+  background-color: var(--nodeF);
+  border: 2px solid var(--nodeD);
+
+}
+
+.infoNode {
+  padding: 10px;
+  border: 0px solid var(--highlight);
+  border-radius: 3px;
+  background-color: var(--nodeI);
+  color: var(--text);
+
+  font-family: Verdana;
+  font-size: 10px
+}

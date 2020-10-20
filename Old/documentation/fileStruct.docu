@@ -1,0 +1,22 @@
+Exper-Name -> YY-MM-DD -> 16-06-23
+
+Exper-Name/
+    Exper-Name_Plate-Map.csv
+    Exper-Name_Info.docu    (docu -> txt file)
+    Exper-Name_czi/
+        Exper-Name_wellId.czi
+         *
+         *
+         *
+    Exper-Name_csv/
+        Exper-Name_wellId.csv
+         *
+         *
+         *
+    Exper-Name_summary-csv/
+        Exper-Name_<displacement>_<avg,medi>_<by-well,by-condit>.csv
+         ...
+    
+        
+
+    
