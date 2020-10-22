@@ -144,7 +144,8 @@ for i = 1:size(im,3)
         end
         
         plot(pts(:,2)+xs,pts(:,1),'-','Color',trackcolor,'LineWidth',2)
-        text(cent(1),cent(2)-5,num2str(Tsegs(ii).Tid),'Color',trackcolor,'FontSize',6,'BackgroundColor', [.5,.5,.5])
+        textcolor = [1,1,1]
+        text(cent(1),cent(2)-5,num2str(Tsegs(ii).Tid),'Color',textcolor,'FontSize',10,'BackgroundColor', [.5,.5,.5])
         
         if Tsegs(ii).Label==1
             plot(cent(1),cent(2),'+','Color','g','markersize', 20)
