@@ -19,14 +19,14 @@ TimeWindow = 10;
 MaxDist = 150;
 
 %% Get Edges 
+%% Loop through frames
 for t = 1:maxT-1
-    
+    %% Get all segments for time t (that is, for one frame)
     T0 = Segs(times==t);
     Trange1 = t+1;
     Trange2 = min(t+TimeWindow , length(Segs));
-    
-    T1 = Segs(times>= Trange1 & times <= Trange2);
-    
+    %% For comparison, segments t+1 thru t+TimeWindow
+    T1 = Segs(times>= Trange1 & times <= Trange2); 
     Edges{t} = MakeEdgeT(T0,T1,[ids,times],dims,MaxDist);
 end
 
@@ -136,7 +136,7 @@ end
 
 function EdgeList = MakeEdgeT(T0,T1,Tracks,dims,maxDist)
 % Use Intersection Over Union tracking method
-useIOU = 1;
+useIOU = 0;
 EdgeList = [0,0,0];
 idx = 1;
 for i = 1:length(T0)
@@ -145,11 +145,7 @@ for i = 1:length(T0)
         continue
     end
     C1 = T0(i);
-    
-    % Debugging
-    % T1 = T1(1);
-    % End Debugging
-    
+       
     StartTime = Tracks(Tracks(:,1)==C1.Tid,2);
     %if useIOU is true, go through once
     %if all the IOUs are 0, change useIOU to false
