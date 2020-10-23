@@ -136,7 +136,8 @@ end
 
 function EdgeList = MakeEdgeT(T0,T1,Tracks,dims,maxDist)
 % Use Intersection Over Union tracking method
-useIOU = 0;
+useIOU = 1;
+AdjustCentroids = 0;
 EdgeList = [0,0,0];
 idx = 1;
 for i = 1:length(T0)
@@ -162,7 +163,8 @@ for i = 1:length(T0)
        end
        if AllZeroIOUs == 1
            useIOU = false;
-           fprintf(1,'All IOUs are zero -- using Centroids\n');
+           AdjustCentroids = true;
+           fprintf(1,'All IOUs here are zero -- using Centroids\n');
        end
     end
     for j = 1:length(T1)
@@ -173,20 +175,24 @@ for i = 1:length(T0)
             IOU = CalculateIOU(C1,C2);
             if  IOU == 0.0
                 continue;
-            end 
-            %Reverse sign of IOU, so that the distance is in the same direction as the
-            %Centroid distance
-            Edist = -IOU;
-       else
+            end
+            % Add 1 to IOU so range is 1 < IOU < 2
+            Edist = IOU + 1;
+         else
             %Use Centroid 
             dist =  sqrt(sum((C1.Centroid-C2.Centroid).^2,2));
         
             if dist>maxDist
                 continue;
             end 
+            %I don't know what this code does, but Centroid doesn't work
+            %without it
             dist = 2*dist/(C1.Area + C2.Area);       
             deltaT = abs(C1.time - C2.time)-1;       
             Edist = dist + deltaT;
+            if (AdjustCentroids == true)
+                Edist = -(Edist/maxDist);
+            end                
  
         end
               
