@@ -30,6 +30,9 @@ for t = 1:maxT-1
     Edges{t} = MakeEdgeT(T0,T1,[ids,times],dims,MaxDist);
 end
 
+[SegsOut,Edges] = doHungarianAlgorithmAndMakeTracks(Segs,Edges);
+
+
 EdgesT = vertcat(Edges{:});
 [~,idx] = sort(EdgesT(:,3),1);
 SortT = EdgesT(idx,:);
@@ -126,6 +129,24 @@ end
 
 end
 %%
+
+function [SegsOut,Edges] = doHungarianAlgorithmAndMakeTracks(Segs,Edges)
+%Doing just Edges{1,1} - cost between tracks 1 and 2
+Edges11length = length(Edges{1,1});
+CostMatrix = zeros(Edges11length, Edges11length);
+for i = 1:Edges11length
+    EdgeRow = Edges{1,1}(i,1:3);
+    FrameFromObjectId = EdgeRow(1);
+    FrameToObjectId = EdgeRow(2);
+    TravelCost = EdgeRow(3);
+    CostMatrix(FrameFromObjectId, FrameToObjectId) = TravelCost;
+end
+%Just for now
+SegsOut = Segs;
+end
+
+
+
 
 function CalcIOU = CalculateIOU(C1,C2)
 Intersect = intersect(C1.PixelList, C2.PixelList, 'rows');
