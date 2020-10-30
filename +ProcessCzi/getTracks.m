@@ -30,7 +30,8 @@ for t = 1:maxT-1
     Edges{t} = MakeEdgeT(T0,T1,[ids,times],dims,MaxDist);
 end
 
-[SegsOut,Edges] = doHungarianAlgorithmAndMakeTracks(Segs,Edges);
+% Experimental partial replacement of following code below
+% [SegsOut,Edges] = doHungarianAlgorithmAndMakeTracks(Segs,Edges);
 
 
 EdgesT = vertcat(Edges{:});
@@ -134,13 +135,20 @@ function [SegsOut,Edges] = doHungarianAlgorithmAndMakeTracks(Segs,Edges)
 %Doing just Edges{1,1} - cost between tracks 1 and 2
 Edges11length = length(Edges{1,1});
 CostMatrix = zeros(Edges11length, Edges11length);
-for i = 1:Edges11length
-    EdgeRow = Edges{1,1}(i,1:3);
+% Initializenew  array to 1000
+for ii = 1:Edges11length
+    for jj = 1:Edges11length
+        CostMatrix(ii,jj) = 1000.0;
+    end
+end
+for ii = 1:Edges11length
+    EdgeRow = Edges{1,1}(ii,1:3);
     FrameFromObjectId = EdgeRow(1);
     FrameToObjectId = EdgeRow(2);
     TravelCost = EdgeRow(3);
     CostMatrix(FrameFromObjectId, FrameToObjectId) = TravelCost;
 end
+MatchedPairs = matchpairs(CostMatrix, 5);
 %Just for now
 SegsOut = Segs;
 end
